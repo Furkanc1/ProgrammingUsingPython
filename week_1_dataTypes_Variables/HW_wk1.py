@@ -28,22 +28,19 @@ H...e...l...l...o... ...W...o...r...l...d...!
 #########################
 # HINT: research the sep parameter in print()
 #########################
-# "hello"
-# "world"
-# "..."
-# "h"
-# "e"
-# "l"
-# "l"
-# "o"
-# "w"
-# "o"
-# "r"
-# "l"
-# "d"
+
 # Print will print out similar to console.log, sep="" function will seperate everything inside the print() by the value assigned
 # can this be enhanced with a sort of for loop{} to loop through every letter in the sentence hello world, and then seperate it?
-print("h", "e", "l", "l", "o", "w", "o", "r", "l", "d", sep="...")
+print("PROBLEM_1 ", "h", "e", "l", "l", "o", "w", "o", "r", "l", "d", sep="...")
+
+# FOR LOOP VERSION ( I LOOKED IT UP SOURCE: https://www.w3schools.com/python/python_for_loops.asp, https://www.geeksforgeeks.org/python-sep-parameter-print/ )
+# UPDATE DID NOT WORK NOT SURE WHY IT WONT SEPERATE THE ARRAY 
+# usersInputForSeperation = input("enter text for seperation")
+
+# for x in usersInputForSeperation:
+#     print(x, sep = "-")
+
+
 
 #########################
 # #Problem 2: working with Variables and math
@@ -74,7 +71,7 @@ crappyCarMileage = 22
 # NEW COMMENT: Round makes this easier because i dont have to do the // and have the console log 47.0 rather than 47
 stopsToTake = round(tripTotalMileage / crappyCarMileage)
 
-print("Take", stopsToTake, "stops")
+print("PROBLEM 2 ANSWER_1: Take", stopsToTake, "stops.")
 
 """ For the second part of this problem set, we want to explore using different vehicleswith different MPG - modify the problem to ask
 the user the MPG of the vechicle 
@@ -103,4 +100,4 @@ usersCrappyCarMileageAsANumber = int(usersCrappyCarMileage)
 # NEW COMMENT: Round makes this easier because i dont have to do the // and have the console log 47.0 rather than 47
 stopsToTake = round(tripTotalMileage / usersCrappyCarMileageAsANumber)
 
-print("You should take,", stopsToTake, ", stops on this trip.")
+print("You should take", stopsToTake, "stops on this trip.")
