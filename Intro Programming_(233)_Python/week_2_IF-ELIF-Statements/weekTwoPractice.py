@@ -31,8 +31,6 @@ Please enter a guess number between 0 and 100:
 superSecretNumber = 29
 
 userGuess = int(input("Guess a number 0 through 100"))
-# if (userGuess < 0 > 100): print("number range through 0-100")
-
 
 ########################## Challenge 2 ################################
 # Comparing the input and the secret number.
