@@ -31,6 +31,9 @@ H...e...l...l...o... ...W...o...r...l...d...!
 
 # Print will print out similar to console.log, sep="" function will seperate everything inside the print() by the value assigned
 # can this be enhanced with a sort of for loop{} to loop through every letter in the sentence hello world, and then seperate it?
+
+# REUBSMITTION COMMENT: Sepererated everything into variables
+# same logic but now it follows the instruction above
 hello = "Hello"
 world = "World"
 character = "!"
@@ -40,10 +43,10 @@ h = "H"
 e = "e"
 l = "l"
 o = "o"
-space = ""
 w = "W"
 r = "r"
 d = "d"
+space = ""
 
 print(h,e,l,l,o,space,w,o,r,l,d,character, sep="...")
 
@@ -77,13 +80,16 @@ cannot be used.
 3. You must include comments in  your code to explain the math involved. 
 """  # #HINT: Research the round()
 
+# RESUBMITTION COMMENT: Created third variable for GallonsPerCar, I must have overlooked this part cause until i saw the comment i did not realize that taking 20 stops while only going like 1000 miles made NO sense lol, Now it will do the same logic but take into account the (GALLONS * MILESPERGALLON)
+
 # total trip turned into variable
 tripTotalMileage = 1044.5
 # car mileage per gallon turned into variable
 milesPerGallon = 22
 gallonsInCar = 18
 
-travelLimitForSetCar = milesPerGallon * gallonsInCar
+# (RESUBMITTION) --> NEW VARIABLE:
+travelLimitForSetCar = milesPerGallon * gallonsInCar 
 # FIRST COMMENT BEFORE I USED ROUND: create a new variable representing the amount of stops to take, then its just math, 1044.5 divided by 22, and use // as the smybol in order to not get a decimal.
 
 # NEW COMMENT: Round makes this easier because i dont have to do the // and have the console log 47.0 rather than 47
@@ -112,8 +118,11 @@ tripTotalMileage = 1044.5
 # car mileage per gallon turned into user input variable, int promises it will return integer, rather than the string the the input() function returns normally
 # UPDATE ON COMMENT ABOVE: Int did not end up working when i did it like this : input(int("text")),, but when deconstructed it worked fine
 
+# RESUBMITTION COMMENT: Same logic as above, but this time taking in the Users Variable for their Miles Per gallon as well as total Gallons their car carries ( Could also enhance by creating a third input being how far the user wants to travel? i think ill add that now actually)
+
 usersMilesPerGallon = input("What is your cars MilesPerGallon ")
 usersTotalGallons = input("How many gallons does your car hold?")
+UserTripDistanceInMiles = float(input("How far are you travelling (IN MILES)? "))
 
 usersMilesPerGallonAsInt = int(usersMilesPerGallon)
 usersTotalGallonsAsInt= int(usersTotalGallons)
@@ -121,6 +130,6 @@ usersTotalGallonsAsInt= int(usersTotalGallons)
 TravelLimitForUsersCar = (usersMilesPerGallonAsInt * usersMilesPerGallonAsInt)
 
 # NEW COMMENT: Round makes this easier because i dont have to do the // and have the console log 47.0 rather than 47
-stopsToTake = round(tripTotalMileage / TravelLimitForUsersCar)
+stopsToTake = round(UserTripDistanceInMiles / TravelLimitForUsersCar)
 
-print("You should take", stopsToTake, "stops on this trip.")
+print("You should take", stopsToTake, "stops on this trip based on provided information.")
