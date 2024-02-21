@@ -20,5 +20,8 @@ TO RE RUN A FILE:
 - ENTER to run in terminal again
 - *Can do Enter + Shift to run specified line* (buggy)
 
+### Important Functions and WHAT THEY DO:
+(to do see notes)
+
 # Creds
 ### Furkan Coskun (note-Taker) Class: Intro to Programming...(233-01)

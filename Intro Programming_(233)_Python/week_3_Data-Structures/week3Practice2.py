@@ -29,6 +29,7 @@ mylist = [5, 10, 15, 20, 25, 50, 20]
 # print the list in it's orginal version
 # next  use the  index() medthod to find the 20 and assign it to a variable
 # update the the list using [] and the variable for the indexed value
+
 """ Expected output 
 [5, 10, 15, 20, 25, 50, 20]
 [5, 10, 15, 200, 25, 50, 20]
@@ -68,6 +69,7 @@ print(type(mylist2[4]))
 # SAME AS ABOVE BUT ITS MORE DRY CODE (for loops are so much easier it seems in python than Javascript wow)
 
 # dataType = my own variable
+
 # for dataType in mylist2:
 #     print(type(dataType))
 

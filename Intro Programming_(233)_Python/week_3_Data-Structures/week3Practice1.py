@@ -60,19 +60,33 @@ MPHOverLimit = (accusedSpeederMPH - speedLimitOnGivenStreet)
 if (MPHOverLimit <= 0):
     print(f"Accused was NOT over the speed limit :)")
 elif (1 >= MPHOverLimit <= 9):
-    print(f"Accused was {MPHOverLimit} MPH over the limit, They are subject to a 85$ fine, as well as 2 points on their liscence")
+    fine = "$85.00"
+    points = 2
+    print(f"Accused was {MPHOverLimit} MPH over the limit, They are subject to a(n) {fine} fine, as well as {points} points on their liscence")
 elif (10 >= MPHOverLimit <= 14):
-    print(f"Accused was {MPHOverLimit} MPH over the limit, They are subject to a 95$ fine, as well as 2 points on their liscence")
+    fine = "$95.00"
+    points = 2
+    print(f"Accused was {MPHOverLimit} MPH over the limit, They are subject to a(n) {fine} fine, as well as {points} points on their liscence")
 elif (15 >= MPHOverLimit <= 19):
-    print(f"Accused was {MPHOverLimit} MPH over the limit, They are subject to a 105$ fine, as well as 4 points on their liscence")
+    fine = "$105.00"
+    points = 4
+    print(f"Accused was {MPHOverLimit} MPH over the limit, They are subject to a(n) {fine} fine, as well as {points} points on their liscence")
 elif (20 >= MPHOverLimit <= 24):
-    print(f"Accused was {MPHOverLimit} MPH over the limit, They are subject to a 200$ fine, as well as 4 points on their liscence")
+    fine = "$200.00"
+    points = 4
+    print(f"Accused was {MPHOverLimit} MPH over the limit, They are subject to a(n) {fine} fine, as well as {points} points on their liscence")
 elif (25 >= MPHOverLimit <= 29):
-    print(f"Accused was {MPHOverLimit} MPH over the limit, They are subject to a 220$ fine, as well as 4 points on their liscence")
+    fine = "$220.00"
+    points = 4
+    print(f"Accused was {MPHOverLimit} MPH over the limit, They are subject to a(n) {fine} fine, as well as {points} points on their liscence")
 elif (30>= MPHOverLimit<= 34):
-    print(f"Accused was {MPHOverLimit} MPH over the limit, They are subject to a 240$ fine, as well as 5 points on their liscence")
+    fine = "$240.00"
+    points = 5
+    print(f"Accused was {MPHOverLimit} MPH over the limit, They are subject to a(n) {fine} fine, as well as {points} points on their liscence")
 elif (MPHOverLimit >= 35):
-    print(f"Accused was {MPHOverLimit} MPH over the limit, They are subject to a 269$+ fine, as well as 5+ points on their liscence")
+    fine = "$269.00"
+    points = 5
+    print(f"Accused was {MPHOverLimit} MPH over the limit, They are subject to a(n) {fine} fine, as well as {points}+ points on their liscence")
 else: print('Value Must Be a valid INTEGER')
 # shouldnt even get to this else statement because the input only takes integers lol just realizing
 
