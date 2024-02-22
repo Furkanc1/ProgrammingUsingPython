@@ -66,6 +66,7 @@ def playAgainLogic():
         print(f"{playAgainPrompt} was not an option, Please select Yes(y) OR No(n). Thank You! ")
         playAgainLogic()
 
+# Here the GamewinnerLogic takes in 2 parameters, we can name them anything but in reality they are defined in the "startGame() function" as "userChoice" and "robotChoice"  Then in this function just RENAMED as "theUsersChoice" and "theRobotsChoice"
 def gameWinnerLogic(theUsersChoice, theRobotsChoice):
     # if the both choices == one another, will print that its a tie game and run play again logic to ask user if they want to play again??
     if (theUsersChoice == "r" and theRobotsChoice == "Rock") or (theUsersChoice == "p" and theRobotsChoice == "Paper") or (theUsersChoice == "s" and theRobotsChoice == "Scissors"):
