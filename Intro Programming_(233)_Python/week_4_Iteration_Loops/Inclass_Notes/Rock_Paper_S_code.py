@@ -53,6 +53,12 @@ Sorry, glue is not one of the valid choices, Please enter ('rock', 'paper', 'sci
 # IMPORTING random from python ( similar to imports using NODE.js (npm) ) basically is just math.random() but has to be imported to be used first
 import random
 
+# defining what each of the choices defeat and are defeated by in a dictionary (basically a json object with key value pairs)
+choicesDictionary = {
+    "r": "The rock is able to break the scissors, but can be defeated by the paper",
+    "p": "The paper is able to wrap the rock up, but is easily cut by the scissor",
+    "s": "The scissor is able to cut paper, but is smashed by the rock",
+}
 # defining the Logic for how the game is won:
 
 # two parameters in gameWinnerLogic can be named anything as they are my own variables. They represent the UsersChoice from the INPUT() as well as the randomly generated AIChoice from the AutomatedCHoiceLogic()
@@ -72,7 +78,7 @@ def gameWinnerLogic(theUsersChoice, theRobotsChoice):
     if (theUsersChoice == "r" and theRobotsChoice == "Rock") or (theUsersChoice == "p" and theRobotsChoice == "Paper") or (theUsersChoice == "s" and theRobotsChoice == "Scissors"):
         print("TIE GAME !!!")
         playAgainLogic()
-    # elif: the users choice beats the AI's choice logically then will print that you won! ( we control how the logic works in this line because if i wanted to i could make paper beat scissors but the rules of the game would be different then. ) 
+    # elif: the users choice beats the AI's choice logically then will print that you won! ( we control how the logic works in this line because if i wanted to i could make paper beat scissors but the rules of the game wouldn't make sense. ) 
     elif (theUsersChoice == "r" and theRobotsChoice == "Scissors") or (theUsersChoice == "s" and theRobotsChoice == "Paper") or (theUsersChoice == "p" and theRobotsChoice == "Rock"):
         print("You WIN !!! ")
         playAgainLogic()
@@ -86,12 +92,6 @@ def automatedChoiceLogic():
     # random choice uses the import Random,  and selects a random index from the given tuple. --> Similar to math.random() where it chooses an index from 0.000 - 0.9999 (or just 1) and based off that chooses one of the options
     randomChoice = random.choice(choices)
     return randomChoice
-# defining what each of the choices defeat and are defeated by in a dictionary (basically a json object with key value pairs)
-choicesDictionary = {
-    "r": "The rock is able to break the scissors, but can be defeated by the paper",
-    "p": "The paper is able to wrap the rock up, but is easily cut by the scissor",
-    "s": "The scissor is able to cut paper, but is smashed by the rock",
-}
 
 # Start game logic, Will ask user for their input from the choices
 def startGame():
