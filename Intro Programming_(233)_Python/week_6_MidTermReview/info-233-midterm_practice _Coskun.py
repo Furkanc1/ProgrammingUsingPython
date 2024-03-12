@@ -39,7 +39,7 @@ mlbTeams = {
 mlbTeams.update({"New York City Queens":"New York Mets"})
 
 # 2
-# print("\nIterate through the keys and values at the same time")
+print("\nIterate through the keys and values at the same time")
 for city in mlbTeams:
     print (city,':',mlbTeams[city])
 
@@ -52,7 +52,7 @@ mlbTeams.pop(selectedCity)
 if (selectedCity) in (mlbTeams):
     print("Error Deleting City")
 else:
-    print(f"{selectedCity} was deleted successfully!")
+    print(f"*******************************************{selectedCity} was deleted successfully!")
 print("************************************************  \nNew Dictionary:")
 for city in mlbTeams:
     print(city)
@@ -83,7 +83,7 @@ the numeber you entered was 23, and its square is 529
 
 """
 def SquareIt(usersNumber):
-    squareNumber = (usersNumber * usersNumber)
+    squareNumber = ( usersNumber ** 2)
     return squareNumber
 
 def askUser():
