@@ -104,7 +104,7 @@ def startGame():
         print(f"You chose: {userChoice}, {choicesDictionary[userChoice]}")
         # defines the robots choice by running the automated choice logic function above
         robotChoice = automatedChoiceLogic()
-        print(f"The automated opponent chose: {robotChoice} ")
+        print(f"The automated opponent chose: {robotChoice}, {choicesDictionary[userChoice]} ")
 
         # next it it will run the gameWinnerLogic function which takes in two parameters, the userChoice and RobotChoice... These parameters are also DYNAMICALLY redefined inside the actualy GWL Function using the ROBOTCHOICE(random) AND USER CHOICE(input)
         gameWinnerLogic(userChoice, robotChoice)
