@@ -10,7 +10,7 @@
 
 import requests
 
-api_key = "d735ff976ff9608fe1853190a3b94c6f"
+api_key = "ENTER KEY HERE"
 
 headers = {"Content-Type":"application/json", "User-agent":"Mozilla"}
 
