@@ -13,11 +13,14 @@ from pprint import pp
 # random used to get a random number for generating random recipe function
 import random
 
+# import PIL which basically opens up images from a Url automatically (doesnt work yet need to get running)
+from PIL import Image
+
 # **** The Cocktail DB ****
 
 # headers defined (api key and host link)
 apiHeader = {
-	"X-RapidAPI-Key": "EnterKeyHere",
+	"X-RapidAPI-Key": "EnterKeyHere_sameKeyForBoth)",
 	"X-RapidAPI-Host": "the-cocktail-db3.p.rapidapi.com"
 }
 
@@ -25,7 +28,7 @@ apiHeader = {
 
 # headers defined (api key and host link)
 searchedCocktailHeader = {
-    'X-RapidAPI-Key': 'EnterKeyHere',
+    'X-RapidAPI-Key': 'EnterKeyHere_sameKeyForBoth',
     'X-RapidAPI-Host': 'cocktail-by-api-ninjas.p.rapidapi.com',
 }
 
@@ -38,6 +41,10 @@ allDrinks = response.json()
 
 # ***UNCOMMENT THIS LINE AND RUN CODE TO SEE A LIST OF ALL CURRENT DRINKS ON API*** (optional)
 # pp(allDrinks)
+
+
+
+# Where the coding section starts (below)
 
 # function for finding more results:
 def moreResults(userSearch):
@@ -115,7 +122,7 @@ def findSpecificDrinkByName():
         elif(drinkName == "b" or drinkName == "main program" or drinkName == "main"):
             mainProgram()
 
-        # ELSE IF: searchedCOcktail is valid then:
+        # ELSE IF: searchedCOcktail is valid (returns code 200) then:
         elif (searchedCocktail):
 
             # automatic message to show user their search
@@ -162,10 +169,9 @@ def findSpecificDrinkByName():
         # if that happens we send them back to start of function
         findSpecificDrinkByName()
 
-
-
 # Here the user is given the choice to find another drink if they decide they dont like the drink they chose
 def lookUpDifferentDrink():
+
     # asks user if they are interested in finding another drink
     findAnotherDrink = input("Find another drink? Yes: (y) No: (n)\n").lower()
 
@@ -179,7 +185,6 @@ def lookUpDifferentDrink():
     
     # ELSE: if they input ANYTHING other than Yes or No, they are told their choice was not valid, and they are then sent to the start of THIS function and asked again
     else:
-
         print(f"{findAnotherDrink} was not valid, Try Again!")
         lookUpDifferentDrink()
 
@@ -272,11 +277,14 @@ def rollAnotherRandomRecipe():
         rollAnotherRandomRecipe()
 
 # Here is where the user will land if they selected to find a specific drink recipe
-def askForDrinkId():
-    
+def HowToSearchForDrink():
+
+    # immediatley the user is given the List of Drinks to choose from
+    # showListOfDrinks()
+
     # will ask the user for the drinks id (which will be a list available in the read me for each drink and its corresponding id (like a menu at a restaurant))
     # we use .lower() to lowercase the users input so that in the if conditions it can be handled as all lowercase
-    usersChoice = input("Would you like to search by NAME (n) or ID (enter id based on readMe) or Main Program (b) or Quit (Q) \n ").lower()
+    usersChoice = input("Would you like to search by NAME (n) or Enter ID (L for list) Main Program: (b) Quit: (Q) \n ").lower()
 
     # Try: will attempt the logic based on what the user inputs (see decent explanation in rollAnotherRandomRecipe() function
     try:
@@ -294,6 +302,13 @@ def askForDrinkId():
 
             # send user to find drink by name function:
             findSpecificDrinkByName()
+
+        elif (usersChoice == "list" or usersChoice == "l" or usersChoice == "lis"):
+            # Shows list of drinks if that what they want!
+            showListOfDrinks()
+
+            # then ask them the same thing
+            HowToSearchForDrink()
         
         # ANYTHING else the user inputs (aka an ID) will be turned into an INTEGER (because input() by default return strings)
         # then we run a SECOND "try-except" block which will determine if their inputted ID actually exists in the list of ID's
@@ -307,23 +322,26 @@ def askForDrinkId():
                 # here we are defining the number of drinks that exist on the api (this can be updated so we just go based off the length of data the api call returns when we ask it to list out ALL the drinks)
                 numberOfDrinkAvailable = len(allDrinks)
 
-                # Check if the entered id actually exists on the list of ID's (we check this by just making sure its within 0-131)
-                if 1 <= usersIdChoice <= numberOfDrinkAvailable:
+                try:
+                    # Check if the entered id actually exists on the list of ID's (we check this by just making sure its within 0-131)
+                    if 1 <= usersIdChoice <= numberOfDrinkAvailable:
 
-                    # if the users inputted ID is within 0-131, THEN we send it to the drinkRecipe(*parameter*) function as a parameter
-                    drinkRecipe(usersIdChoice)
-                
-                # Else: Input was NOT valid and we specifcally tell them it has to be within 1-132 for their next attempt
-                # then send them back to askForDrinkId() function
-                else:
-                    print(f"{usersIdChoice} is not a valid ID. Please enter an ID between 1 and {numberOfDrinkAvailable}.")
-                    askForDrinkId()
+                        # if the users inputted ID is within 0-131, THEN we send it to the drinkRecipe(*parameter*) function as a parameter
+                        drinkRecipe(usersIdChoice)
+                    
+                    # Else: Input was NOT valid and we specifcally tell them it has to be within 1-132 for their next attempt
+                    # then send them back to askForDrinkId() function
+                    else:
+                        print(f"{usersIdChoice} is not a valid ID. Please enter an ID between 1 and {numberOfDrinkAvailable}.")
+                        HowToSearchForDrink()
+                except KeyError:
+                    print("Check your ApiKey or ApiDocs(Key-Error)")
 
             # EXCEPT: if the users input was NOT an INT, we give them a try again message and again send them back to askForDrinkID() function
             # Technically i dont think we need this, but if you have a TRY block then you MUST have an EXCEPT block or the code will error out
             except ValueError:
                 print(f"{usersChoice} was not a valid Input, Try Again!")
-                askForDrinkId()
+                HowToSearchForDrink()
 
 
     # Here is where we handle "VALUE-ERROR" Lets say the user typed "123ABC", normally this would return a red error on the screen because drinkRecipe() function NEEDS ONLY an INT or else it wont work... Here we basically say, based on the users input TRY the code above, if the users input returns a "Value-Error", then we run whatver is inside the EXCEPT block of code (below)
@@ -333,7 +351,7 @@ def askForDrinkId():
         print(f"{usersChoice} was not a valid ID, Try Again!")
 
         # runs THIS function again askForDrinkId() and basically takes it from the top of the function asking user same question
-        askForDrinkId()
+        HowToSearchForDrink()
 
 # Generating random drink HERE: (done by importing random)
 def generateRandomDrink():
@@ -384,19 +402,42 @@ def generateRandomDrink():
 
     # formatted description variable using textwrap.fill()
     prettyDescription = textwrap.fill(description, width= 70)
-
-    # here is what the user will see when the code is run rather than "pp(results)"
-    print(f"\n\nYou chose the drink: {title}, Drink ID: {drinkID}\n\nDrink Description:\n{prettyDescription}\n\nDrink difficulty is: {difficulty}\nTime required: {results['time']}\n\nIngredients You'll Need!:\n {recipe}\n\n**Creating The Cocktail**\n\n{howTo} ")
+    try:
+        # here is what the user will see when the code is run rather than "pp(results)"
+        print(f"\n\nYou chose the drink: {title}, Drink ID: {drinkID}\n\nDrink Description:\n{prettyDescription}\n\nDrink difficulty is: {difficulty}\nTime required: {results['time']}\n\nIngredients You'll Need!:\n {recipe}\n\n**Creating The Cocktail**\n\n{howTo} ")
+    except KeyError:
+        print("Check your ApiKey or ApiDocs")
 
     # here we run the rollAnotherRandomRecipe() Function which will... (Ctrl or Cmnd + Click function to automatically go to it)
     rollAnotherRandomRecipe()
+
+# Show list of drinks function (simple)
+def showListOfDrinks():
+    # For every drink in allDrinks (data from API)
+    for drink in allDrinks:
+        
+        # create variables for drink Data
+        drinkName = drink['title']
+        drinkID = drink['id']
+        drinkDifficulty = drink['difficulty']
+
+        # printing all that data so it looks pretty :)))
+        print(f"Drink Name: {drinkName}")
+        print(f"Drink ID: {drinkID}")
+
+
+def openAndShowImage(image_path):
+    img = Image.open(image_path)
+    img.show()
+
+# openAndShowImage() #path name needed (not working yet)
 
 # HERE is where the MAIN-PROGRAM starts!!!
 def mainProgram():
     
     # first, the program will ask the user if they want to generate a random drink or find a specific drink they like (from the list of 132 drinks)
     #.lower() at the end of input for (case-sensitivity) (aka: so that no matter what they type it will come out lowercase)
-    mainProgramChoice = input("Would you like to find a specific drink or generate a random drink? Random (r) Specific (s) Quit: (q)\n").lower() 
+    mainProgramChoice = input("Would you like to find a specific drink or generate a random drink? Random (r) Specific (s) Quit: (q) List: (l)\n").lower() 
 
     # if their choice was random, we run the generateRandom() function (Ctrl or Cmnd + Click on function to automatically go to it (or just find it))
     if (mainProgramChoice == "r" or mainProgramChoice == "random"):
@@ -404,11 +445,14 @@ def mainProgram():
     
     # else if: their choice was a specific drink, we run the askForDrinkID() function (Ctrl or Cmnd + Click on function to automatically go to it (or just scroll to it))
     elif (mainProgramChoice == "s" or mainProgramChoice == "specific"):
-        askForDrinkId()             
+        HowToSearchForDrink()             
     
     # else if: The users choice was to quit, they are kicked out of the program, and left with a "goobye" message!
     elif (mainProgramChoice == "q" or mainProgramChoice == "quit"):
         print("Goodbye!")
+        
+    elif (mainProgramChoice == "l" or mainProgramChoice == "list"):
+        showListOfDrinks()
 
     # ANY other thing they type in is not valid, our program runs one way and its intended to be used one way so they are given a message "try again"
     # we also run the main program from the top in order to let the user try again rather than just kick them off and have them run the python file again
